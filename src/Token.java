@@ -8,6 +8,18 @@ public class Token {
     private int value;
     private char tk;
 
+    public char getTk() {
+        return tk;
+    }
+
+    public Toktype getTtype() {
+        return ttype;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
     // Constructor privat. Evita que es puguin construir objectes Token externament
     private Token() {
     }

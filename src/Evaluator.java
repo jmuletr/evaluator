@@ -48,34 +48,34 @@ public class Evaluator {
 
     public static int calcRPN(Token[] list) {
         // Calcula el valor resultant d'avaluar la llista de tokens
-        LinkedList<Token> lista = new LinkedList<>();
+        LinkedList<Token> llista = new LinkedList<>();
         for (int i = 0; i < list.length; i++) {
             while (list[i].getTtype() == Token.Toktype.NUMBER) {
-                lista.push(list[i]);
+                llista.push(list[i]);
                 if (i == list.length - 1) {
                     break;
                 } else {
                     i++;
                 }
             }
-            Token n2 = lista.pop();
-            Token n1 = lista.pop();
+            Token n2 = llista.pop();
+            Token n1 = llista.pop();
 
             if (list[i].getTk() == '+') {
-                lista.push(suma(n1, n2));
+                llista.push(suma(n1, n2));
             } else if (list[i].getTk() == '-') {
-                lista.push(resta(n1, n2));
+                llista.push(resta(n1, n2));
             } else if (list[i].getTk() == '*') {
-                lista.push(multiplicacio(n1, n2));
+                llista.push(multiplicacio(n1, n2));
             } else if (list[i].getTk() == '/') {
-                lista.push(divisio(n1, n2));
+                llista.push(divisio(n1, n2));
             } else if (list[i].getTk() == '^') {
-                lista.push(potenci(n1, n2));
+                llista.push(potenci(n1, n2));
             } else if (list[i].getTk() == '_') {
-                lista.push(arrel(n1, n2));
+                llista.push(arrel(n1, n2));
             }
         }
-        return lista.poll().getValue();
+        return llista.poll().getValue();
 
     }
 

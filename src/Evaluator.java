@@ -71,6 +71,8 @@ public class Evaluator {
                 lista.push(divisio(n1, n2));
             } else if (list[i].getTk() == '^') {
                 lista.push(potenci(n1, n2));
+            } else if (list[i].getTk() == '_') {
+                lista.push(arrel(n1, n2));
             }
         }
         return lista.poll().getValue();
@@ -81,6 +83,9 @@ public class Evaluator {
         int prioritat = 0;
         switch (op) {
             case '^':
+                prioritat = 3;
+                break;
+            case '_':
                 prioritat = 3;
                 break;
             case '*':
@@ -139,6 +144,13 @@ public class Evaluator {
         int r = a.getValue();
         int r2 = b.getValue();
         Token resultat = Token.tokNumber((int)Math.pow(r,r2));
+        return resultat;
+    }
+
+    private static Token arrel(Token a, Token b) {
+        int r = a.getValue();
+        int r2 = b.getValue();
+        Token resultat = Token.tokNumber((int)Math.pow(r, 1.0/r2));
         return resultat;
     }
 

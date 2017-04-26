@@ -97,7 +97,7 @@ public class Token {
             if (numero.length() > 0) {
                 tokens.add(tokNumber(Integer.parseInt(numero)));
             }
-            if (expr.charAt(i) == '+' || expr.charAt(i) == '-' || expr.charAt(i) == '*' || expr.charAt(i) == '/' || expr.charAt(i) == '^' ) {
+            if (expr.charAt(i) == '+' || expr.charAt(i) == '-' || expr.charAt(i) == '*' || expr.charAt(i) == '/' || expr.charAt(i) == '^' || expr.charAt(i) == '_') {
                 tokens.add(tokOp(expr.charAt(i)));
             } else if (expr.charAt(i) == '(' || expr.charAt(i) == ')') {
                 tokens.add(tokParen(expr.charAt(i)));

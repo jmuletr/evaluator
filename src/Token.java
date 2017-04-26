@@ -39,7 +39,7 @@ public class Token {
     static Token tokOp(char c) {
         Token tokenChar = new Token();
         tokenChar.ttype = Toktype.OP;
-        tokenChar.value = c;
+        tokenChar.tk = c;
         return tokenChar;
     }
 
@@ -47,7 +47,7 @@ public class Token {
     static Token tokParen(char c) {
         Token tokenPar = new Token();
         tokenPar.ttype = Toktype.PAREN;
-        tokenPar.value = c;
+        tokenPar.tk = c;
         return tokenPar;
     }
 

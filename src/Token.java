@@ -29,22 +29,31 @@ public class Token {
 
     // Torna un token de tipus "NUMBER"
     static Token tokNumber(int value) {
-        return null;
+        Token tokenNum = new Token();
+        tokenNum.ttype = Toktype.NUMBER;
+        tokenNum.value = value;
+        return tokenNum;
     }
 
     // Torna un token de tipus "OP"
     static Token tokOp(char c) {
-        return null;
+        Token tokenChar = new Token();
+        tokenChar.ttype = Toktype.OP;
+        tokenChar.value = c;
+        return tokenChar;
     }
 
     // Torna un token de tipus "PAREN"
     static Token tokParen(char c) {
-        return null;
+        Token tokenPar = new Token();
+        tokenPar.ttype = Toktype.PAREN;
+        tokenPar.value = c;
+        return tokenPar;
     }
 
     // Mostra un token (conversió a String)
     public String toString() {
-        return "";
+        return "" + this.ttype + " " + this.value + " " + this.tk;
     }
 
     // Mètode equals. Comprova si dos objectes Token són iguals

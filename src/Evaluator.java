@@ -10,36 +10,36 @@ public class Evaluator {
         // Efectua el procediment per convertir la llista de tokens en notació RPN
         // Finalment, crida a calcRPN amb la nova llista de tokens i torna el resultat
         List<Token> cua = new LinkedList<>();
-        LinkedList<Token> operants = new LinkedList<>();
+        LinkedList<Token> operadors = new LinkedList<>();
 
         for (int i = 0; i < tokens.length; i++) {
             if (tokens[i].getTtype() == Token.Toktype.NUMBER) {
                 cua.add(tokens[i]);
             } else if (tokens[i].getTtype() == Token.Toktype.OP) {
-                if (!operants.isEmpty()) {
-                    if (CompareTo(tokens[i].getTk(), operants.peek().getTk())) {
-                        operants.push(tokens[i]);
+                if (!operadors.isEmpty()) {
+                    if (CompareTo(tokens[i].getTk(), operadors.peek().getTk())) {
+                        operadors.push(tokens[i]);
                     } else {
-                        cua.add(operants.pop());
-                        if (!operants.isEmpty() && !CompareTo(tokens[i].getTk(), operants.peek().getTk())) {
-                            cua.add(operants.pop());
+                        cua.add(operadors.pop());
+                        if (!operadors.isEmpty() && !CompareTo(tokens[i].getTk(), operadors.peek().getTk())) {
+                            cua.add(operadors.pop());
                         }
-                        operants.push(tokens[i]);
+                        operadors.push(tokens[i]);
                     }
                 } else {
-                    operants.push(tokens[i]);
+                    operadors.push(tokens[i]);
                 }
             } else if (tokens[i].getTk() == '(') {
-                operants.push(tokens[i]);
+                operadors.push(tokens[i]);
             } else if (tokens[i].getTk() == ')') {
-                while (operants.peek().getTk() != '(') {
-                    cua.add(operants.pop());
+                while (operadors.peek().getTk() != '(') {
+                    cua.add(operadors.pop());
                 }
-                operants.pop();
+                operadors.pop();
             }
         }
-        while (!operants.isEmpty()) {
-            cua.add(operants.pop());
+        while (!operadors.isEmpty()) {
+            cua.add(operadors.pop());
         }
         Token[] operacio = new Token[cua.size()];
         cua.toArray(operacio);

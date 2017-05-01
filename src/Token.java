@@ -11,6 +11,7 @@ public class Token {
     private int value;
     private char tk;
 
+    //geters de les variables
     public char getTk() {
         return tk;
     }
@@ -83,10 +84,15 @@ public class Token {
 
     // A partir d'un String, torna una llista de tokens
     public static Token[] getTokens(String expr) {
+        //array de tokens
         List<Token> tokens = new ArrayList<>();
+        //recorrem tots els valors del string
         for (int i = 0; i < expr.length(); i++) {
+            //variable per guardar un numero temporalment
             String numero = "";
+            //mentres el caracter del string que tractam siguin numeros seguits vol dir que es un nombre de mes de un digit
             while (expr.charAt(i) >= '0' && expr.charAt(i) <= '9') {
+                //afegim els nombres a la variable numero, si em recorregut tot el string aturam el bucle si no augmentam i
                 numero += expr.charAt(i);
                 if (i == expr.length() - 1) {
                     break;
@@ -94,15 +100,19 @@ public class Token {
                     i++;
                 }
             }
+            //si el caracter que em tractat es un nombre cream el token corresponent
             if (numero.length() > 0) {
                 tokens.add(tokNumber(Integer.parseInt(numero)));
             }
+            //si es un operador comprovam que sigui un dels operadors valids i cream el token
             if (expr.charAt(i) == '+' || expr.charAt(i) == '-' || expr.charAt(i) == '*' || expr.charAt(i) == '/' || expr.charAt(i) == '^' || expr.charAt(i) == '_') {
                 tokens.add(tokOp(expr.charAt(i)));
+                //per acabar tractam els parentesi creant el seu token corresponent
             } else if (expr.charAt(i) == '(' || expr.charAt(i) == ')') {
                 tokens.add(tokParen(expr.charAt(i)));
             }
         }
+        //una vegada tractat tot el string convertim la llista de tokens que hem generat a array i la retornam
         Token[] token = new Token[tokens.size()];
         tokens.toArray(token);
         return token;

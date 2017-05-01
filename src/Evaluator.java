@@ -66,7 +66,7 @@ public class Evaluator {
     public static int calcRPN(Token[] list) {
         // Calcula el valor resultant d'avaluar la llista de tokens
         LinkedList<Token> llista = new LinkedList<>();
-        //recorrem la llista de tokens list
+        //recorrem la llista de tokens list afegint els nombres a llista fins trobar un operador
         for (int i = 0; i < list.length; i++) {
             while (list[i].getTtype() == Token.Toktype.NUMBER) {
                 llista.push(list[i]);
@@ -76,9 +76,10 @@ public class Evaluator {
                     i++;
                 }
             }
+            //asociam els nombres a 2 variables per facilitar les operacions
             Token n2 = llista.pop();
             Token n1 = llista.pop();
-
+            //comprovam l'operador i enviam els dos nombres anteriors a la funcio corresponent i afegim el resutat a la llista
             if (list[i].getTk() == '+') {
                 llista.push(suma(n1, n2));
             } else if (list[i].getTk() == '-') {
@@ -93,11 +94,13 @@ public class Evaluator {
                 llista.push(arrel(n1, n2));
             }
         }
+        //retornam el resultat de l'operacio
         return llista.poll().getValue();
 
     }
 
     private static int prioritat(char op) {
+        //retorna un valor que especifica la prioritat del operand
         int prioritat = 0;
         switch (op) {
             case '^':
@@ -123,12 +126,14 @@ public class Evaluator {
     }
 
     private static boolean CompareTo(char op1, char op2) {
+        //compara operands depenguent de la seva prioritat
         int oper1 = prioritat(op1);
         int oper2 = prioritat(op2);
         if (oper1 > oper2)return true;
         return false;
     }
 
+    //funcions per fer les operacions corresponents al operand
     public static Token suma(Token a, Token b) {
         int r = a.getValue();
         int r2 = b.getValue();

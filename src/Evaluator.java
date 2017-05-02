@@ -177,5 +177,18 @@ public class Evaluator {
         return resultat;
     }
 
+    private static Token factorial(Token a) {
+        int r = a.getValue();
+        Token resultat = Token.tokNumber(calcFactorial(r));
+        return resultat;
+    }
+
+    private static int calcFactorial(int numero) {
+        if (numero == 1) {
+            return numero;
+        }
+        return numero * calcFactorial(numero - 1);
+    }
+
 
 }

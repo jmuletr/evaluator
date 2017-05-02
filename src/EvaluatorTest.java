@@ -75,4 +75,12 @@ public class EvaluatorTest {
         assertEquals(4, Evaluator.calculate("2^2"));
         assertEquals(8, Evaluator.calculate("9_2+2^2+1"));
     }
+
+    @Test
+    public void testsNegatius() {
+        assertEquals(-1, Evaluator.calculate("-2+1"));
+        assertEquals(5, Evaluator.calculate("2*4+(-3)"));
+        assertEquals(5, Evaluator.calculate("2*4+-3"));
+        assertEquals(11, Evaluator.calculate("2*4+--3"));
+    }
 }

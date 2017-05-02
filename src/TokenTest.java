@@ -21,22 +21,4 @@ public class TokenTest {
         };
         assertArrayEquals(expected, Token.getTokens(expr));
     }
-
-    @Test
-    public void negatius() {
-        String expr;
-        Token[] expected;
-
-        expr = "-1";
-        expected = new Token[]{Token.tokNumber(-1)};
-        assertArrayEquals(expected, Token.getTokens(expr));
-
-        expr = "-1+3";
-        expected = new Token[]{Token.tokNumber(-1), Token.tokOp('+'), Token.tokNumber(3)};
-        assertArrayEquals(expected, Token.getTokens(expr));
-
-        expr = "1+(-3)";
-        expected = new Token[]{Token.tokNumber(1), Token.tokOp('+'), Token.tokParen('('), Token.tokNumber(-3), Token.tokParen(')')};
-        assertArrayEquals(expected, Token.getTokens(expr));
-    }
 }

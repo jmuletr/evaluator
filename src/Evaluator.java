@@ -78,7 +78,7 @@ public class Evaluator {
             }
             //asociam els nombres a 2 variables per facilitar les operacions
             Token n1, n2;
-            if (list[i].getTk() != '!'){
+            if (list[i].getTk() != '!' && list[i].getTk() != '¡'){
                 n2 = llista.pop();
                 n1 = llista.pop();
             } else {
@@ -100,6 +100,8 @@ public class Evaluator {
                 llista.push(arrel(n1, n2));
             } else if (list[i].getTk() == '!') {
                 llista.push(factorial(n1));
+            } else if (list[i].getTk() == '¡') {
+                llista.push(negatiu(n1));
             }
         }
         //retornam el resultat de l'operacio
@@ -113,6 +115,9 @@ public class Evaluator {
         switch (op) {
             case '!':
                 prioritat = 4;
+                break;
+            case '¡':
+                prioritat = 5;
                 break;
             case '^':
                 prioritat = 3;
@@ -199,6 +204,12 @@ public class Evaluator {
             return numero;
         }
         return numero * calcFactorial(numero - 1);
+    }
+
+    private static Token negatiu(Token a) {
+        int r = a.getValue();
+        Token resultat = Token.tokNumber(r * -1);
+        return resultat;
     }
 
 

@@ -104,8 +104,17 @@ public class Token {
             if (numero.length() > 0) {
                 tokens.add(tokNumber(Integer.parseInt(numero)));
             }
+            if (i == 0 && expr.charAt(0) == '-'){
+                    tokens.add(tokOp('¡'));
+            }else if (expr.charAt(i) == '-' && (expr.charAt(i-1) == '(' || expr.charAt(i-1) == '+'|| expr.charAt(i-1) == '-' || expr.charAt(i-1) == '*' || expr.charAt(i-1) == '/' || expr.charAt(i-1) == '^' || expr.charAt(i-1) == '_' || expr.charAt(i-1) == '!')){
+                if (expr.charAt(i) == '-' && expr.charAt(i+1) == '-'){
+                  expr = expr.replace("--","+");
+                   expr = expr.replace("++","+");
+                   i--;
+                }else tokens.add(tokOp('¡'));
+            }
             //si es un operador comprovam que sigui un dels operadors valids i cream el token
-            if (expr.charAt(i) == '+' || expr.charAt(i) == '-' || expr.charAt(i) == '*' || expr.charAt(i) == '/' || expr.charAt(i) == '^' || expr.charAt(i) == '_' || expr.charAt(i) == '!') {
+            else if (expr.charAt(i) == '+' || expr.charAt(i) == '-' || expr.charAt(i) == '*' || expr.charAt(i) == '/' || expr.charAt(i) == '^' || expr.charAt(i) == '_' || expr.charAt(i) == '!') {
                 tokens.add(tokOp(expr.charAt(i)));
                 //per acabar tractam els parentesi creant el seu token corresponent
             } else if (expr.charAt(i) == '(' || expr.charAt(i) == ')') {

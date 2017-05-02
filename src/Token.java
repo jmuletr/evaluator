@@ -86,6 +86,7 @@ public class Token {
     public static Token[] getTokens(String expr) {
         //array de tokens
         List<Token> tokens = new ArrayList<>();
+        boolean negatiu = false;
         //recorrem tots els valors del string
         for (int i = 0; i < expr.length(); i++) {
             //variable per guardar un numero temporalment
@@ -102,14 +103,26 @@ public class Token {
             }
             //si el caracter que em tractat es un nombre cream el token corresponent
             if (numero.length() > 0) {
-                tokens.add(tokNumber(Integer.parseInt(numero)));
+                if (negatiu){
+                    tokens.add(tokNumber(Integer.parseInt(numero) * -1));
+                    negatiu = false;
+                }else tokens.add(tokNumber(Integer.parseInt(numero)));
+
+            }
+            if ((expr.charAt(i) == '-'&& i == 0)){
+                negatiu = true;
             }
             //si es un operador comprovam que sigui un dels operadors valids i cream el token
-            if (expr.charAt(i) == '+' || expr.charAt(i) == '-' || expr.charAt(i) == '*' || expr.charAt(i) == '/' || expr.charAt(i) == '^' || expr.charAt(i) == '_') {
+            else if (!negatiu && (expr.charAt(i) == '+' || expr.charAt(i) == '-' || expr.charAt(i) == '*' || expr.charAt(i) == '/' || expr.charAt(i) == '^' || expr.charAt(i) == '_')) {
                 tokens.add(tokOp(expr.charAt(i)));
                 //per acabar tractam els parentesi creant el seu token corresponent
             } else if (expr.charAt(i) == '(' || expr.charAt(i) == ')') {
                 tokens.add(tokParen(expr.charAt(i)));
+                if (i + 1 != expr.length()){
+                    if (expr.charAt(i+1) == '-'){
+                        negatiu = true;
+                    }
+                }
             }
         }
         //una vegada tractat tot el string convertim la llista de tokens que hem generat a array i la retornam

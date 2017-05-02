@@ -105,7 +105,7 @@ public class Token {
                 tokens.add(tokNumber(Integer.parseInt(numero)));
             }
             //si es un operador comprovam que sigui un dels operadors valids i cream el token
-            if (expr.charAt(i) == '+' || expr.charAt(i) == '-' || expr.charAt(i) == '*' || expr.charAt(i) == '/' || expr.charAt(i) == '^' || expr.charAt(i) == '_') {
+            if (expr.charAt(i) == '+' || expr.charAt(i) == '-' || expr.charAt(i) == '*' || expr.charAt(i) == '/' || expr.charAt(i) == '^' || expr.charAt(i) == '_' || expr.charAt(i) == '!') {
                 tokens.add(tokOp(expr.charAt(i)));
                 //per acabar tractam els parentesi creant el seu token corresponent
             } else if (expr.charAt(i) == '(' || expr.charAt(i) == ')') {

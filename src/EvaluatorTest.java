@@ -83,4 +83,10 @@ public class EvaluatorTest {
         assertEquals(5, Evaluator.calculate("2*4+-3"));
         assertEquals(11, Evaluator.calculate("2*4+--3"));
     }
+
+    @Test
+    public void testsFactorials() {
+        assertEquals(8, Evaluator.calculate("2+3!"));
+        assertEquals(120, Evaluator.calculate("(2+3)!"));
+    }
 }

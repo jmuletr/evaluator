@@ -77,8 +77,14 @@ public class Evaluator {
                 }
             }
             //asociam els nombres a 2 variables per facilitar les operacions
-            Token n2 = llista.pop();
-            Token n1 = llista.pop();
+            Token n1, n2;
+            if (list[i].getTk() != '!'){
+                n2 = llista.pop();
+                n1 = llista.pop();
+            } else {
+                n1 = llista.pop();
+                n2 = null;
+            }
             //comprovam l'operador i enviam els dos nombres anteriors a la funcio corresponent i afegim el resutat a la llista
             if (list[i].getTk() == '+') {
                 llista.push(suma(n1, n2));
@@ -92,6 +98,8 @@ public class Evaluator {
                 llista.push(potenci(n1, n2));
             } else if (list[i].getTk() == '_') {
                 llista.push(arrel(n1, n2));
+            } else if (list[i].getTk() == '!') {
+                llista.push(factorial(n1));
             }
         }
         //retornam el resultat de l'operacio
@@ -103,6 +111,9 @@ public class Evaluator {
         //retorna un valor que especifica la prioritat del operand
         int prioritat = 0;
         switch (op) {
+            case '!':
+                prioritat = 4;
+                break;
             case '^':
                 prioritat = 3;
                 break;

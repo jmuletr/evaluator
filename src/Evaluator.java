@@ -113,11 +113,11 @@ public class Evaluator {
         //retorna un valor que especifica la prioritat del operand
         int prioritat = 0;
         switch (op) {
-            case '!':
-                prioritat = 4;
-                break;
             case '¡':
                 prioritat = 5;
+                break;
+            case '!':
+                prioritat = 4;
                 break;
             case '^':
                 prioritat = 3;

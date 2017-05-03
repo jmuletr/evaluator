@@ -106,12 +106,18 @@ public class Token {
             }
             if (i == 0 && expr.charAt(0) == '-'){
                     tokens.add(tokOp('¡'));
-            }else if (expr.charAt(i) == '-' && (expr.charAt(i-1) == '(' || expr.charAt(i-1) == '+'|| expr.charAt(i-1) == '-' || expr.charAt(i-1) == '*' || expr.charAt(i-1) == '/' || expr.charAt(i-1) == '^' || expr.charAt(i-1) == '_' || expr.charAt(i-1) == '!')){
+            }else if (expr.charAt(i) == '-' && (expr.charAt(i-1) == '(' || expr.charAt(i+1) == '+'|| expr.charAt(i+1) == '-' || expr.charAt(i+1) == '*' || expr.charAt(i+1) == '/' || expr.charAt(i+1) == '^' || expr.charAt(i+1) == '_' || expr.charAt(i+1) == '!')){
                 if (expr.charAt(i) == '-' && expr.charAt(i+1) == '-'){
-                  expr = expr.replace("--","+");
-                   expr = expr.replace("++","+");
-                   i--;
-                }else tokens.add(tokOp('¡'));
+                        expr = expr.replace("--", "+");
+                        expr = expr.replace("++", "+");
+                        i--;
+                }else if (expr.charAt(i) == '-' && expr.charAt(i+1) == '+' ) {
+                    expr = expr.replace("-+", "-");
+                    i--;
+                } else tokens.add(tokOp('¡'));
+            }else if (expr.charAt(i) == '+' && expr.charAt(i+1) == '-'){
+                expr = expr.replace("+-","-");
+                i--;
             }
             //si es un operador comprovam que sigui un dels operadors valids i cream el token
             else if (expr.charAt(i) == '+' || expr.charAt(i) == '-' || expr.charAt(i) == '*' || expr.charAt(i) == '/' || expr.charAt(i) == '^' || expr.charAt(i) == '_' || expr.charAt(i) == '!') {

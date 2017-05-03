@@ -82,6 +82,8 @@ public class EvaluatorTest {
         assertEquals(5, Evaluator.calculate("2*4+(-3)"));
         assertEquals(5, Evaluator.calculate("2*4+-3"));
         assertEquals(11, Evaluator.calculate("2*4+--3"));
+        assertEquals(5, Evaluator.calculate("2*4-+3"));
+        assertEquals(11, Evaluator.calculate("2*4--+3"));
     }
 
     @Test

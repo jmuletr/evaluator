@@ -104,6 +104,7 @@ public class Token {
             if (numero.length() > 0) {
                 tokens.add(tokNumber(Integer.parseInt(numero)));
             }
+            //tractam unaris
             if (i == 0 && expr.charAt(0) == '-'){
                     tokens.add(tokOp('¡'));
             }else if (expr.charAt(i) == '-' && (expr.charAt(i-1) == '(' || expr.charAt(i+1) == '+'|| expr.charAt(i+1) == '-' || expr.charAt(i+1) == '*' || expr.charAt(i+1) == '/' || expr.charAt(i+1) == '^' || expr.charAt(i+1) == '_' || expr.charAt(i+1) == '!')){

@@ -91,4 +91,18 @@ public class EvaluatorTest {
         assertEquals(8, Evaluator.calculate("2+3!"));
         assertEquals(120, Evaluator.calculate("(2+3)!"));
     }
+
+    @Test
+    public void tests_unaris() {
+        assertEquals(2, Evaluator.calculate("-3+5"));
+        assertEquals(6, Evaluator.calculate("-2+6-(-2)"));
+        assertEquals(-44, Evaluator.calculate("-3+(-8*6)-(-7)"));
+        assertEquals(-44, Evaluator.calculate("-3+-8*6--7"));
+        assertEquals(-1, Evaluator.calculate("-2+1"));
+        assertEquals(5, Evaluator.calculate("2*4+(-3)"));
+        assertEquals(5, Evaluator.calculate("2*4+-3"));
+        assertEquals(11, Evaluator.calculate("2*4+--3"));
+        assertEquals(1, Evaluator.calculate("-2+6-(-2+5)"));
+        assertEquals(11, Evaluator.calculate("-2+6-(-2)+5"));
+    }
 }
